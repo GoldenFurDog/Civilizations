@@ -13,7 +13,8 @@
 class Universe {
 
     public:
-    std::vector<Civilization> Civilizations;
+    std::vector<Civilization*> Civilizations;
+    std::vector<std::vector<uint8_t>>* resource_map;
 
     Universe(uint16_t InitCivNum, uint32_t seed);
 

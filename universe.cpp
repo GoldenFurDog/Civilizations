@@ -12,56 +12,10 @@
 const uint32_t sTIME = time(NULL);
 
 Universe::Universe(uint16_t InitCivNum, uint32_t seed) {
-    std::vector<std::vector<uint8_t>>* _resource_map = generateResourceMap(seed, 64);
-    VectorTo24bitBMP(_resource_map);
-}
-
-/*
-std::vector<std::vector<uint8_t>>* generateResourceMap(uint32_t seed) {
-
-    std::vector<std::vector<uint8_t>> Map2, Map1;
-    static std::vector<std::vector<uint8_t>> Map0;
-
-    std::mt19937 gen(seed);
-    std::uniform_int_distribution<uint8_t> dist_0_255(0, 255);
-
-    Map2.resize(MAP_SIZE + 2);
-    for (int i = 0; i < MAP_SIZE + 2; i ++) {
-        Map2[i].resize(MAP_SIZE + 2);
-        for (int j = 0; j < MAP_SIZE + 2; j ++) {
-            Map2[i][j] = dist_0_255(gen);
-        }
-    }
-
-    Map1.resize(MAP_SIZE + 1);
-    for (int i = 0; i < MAP_SIZE + 1; i ++) {
-        Map1[i].resize(MAP_SIZE + 1);
-        for (int j = 0; j < MAP_SIZE + 1; j ++) {
-            Map1[i][j] = (uint8_t)((Map2[i][j] + Map2[i + 1][j] + Map2[i][j + 1] + Map2[i + 1][j + 1]) / 4);
-        }
-    }
-
-    Map0.resize(MAP_SIZE);
-    for (int i = 0; i < MAP_SIZE; i ++) {
-        Map0[i].resize(MAP_SIZE);
-        for (int j = 0; j < MAP_SIZE; j ++) {
-            Map0[i][j] = (uint8_t)((Map1[i][j] + Map1[i + 1][j] + Map1[i][j + 1] + Map1[i + 1][j + 1]) / 4);
-        }
-    }
-
-    // delete this in relese
-    for (int i = 0; i < MAP_SIZE; i ++) {
-        for (int j = 0; j < MAP_SIZE; j ++) {
-            std::cout << (uint16_t) Map0[i][j] << " ";
-        }
-        std::cout << std::endl;
-    }
-    //
-
-    return &Map0;
+    this->resource_map = generateResourceMap(seed, 64);
+    VectorTo24bitBMP(this->resource_map);
 
 }
-*/
 
 std::vector<std::vector<uint8_t>>* generateResourceMap(uint32_t seed, uint16_t stage) {
     if (stage == 0) {return nullptr;}
